@@ -1,0 +1,13 @@
+library(arules)
+library(readr)
+groceries=read.csv(file.choose())
+summary(groceries)
+arule1=apriori(groceries,parameter = list(support=0.004,confidence=0.3,minlen=3))
+arule1
+inspect(head(sort(arule1,by="lift")))
+head(quality(arule1))
+plot(quality(arule1))
+library("arulesViz")
+plot(arule1)
+plot(arule1, method = "grouped")
+plot(arule1[1:10], method = "graph")
